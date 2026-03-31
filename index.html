@@ -1,461 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Ytify - The Fastest Audio Streaming App</title>
-    <style>
-        :root {
-            --primary-color: #ff3e3e;
-            --secondary-color: #141414;
-            --text-color: #ffffff;
-            --card-bg: #202020;
-            --hover-color: #ff5252;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', sans-serif;
-        }
-        
-        body {
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: #0c0c0c;
-            padding: 30px 0;
-            text-align: center;
-            border-bottom: 2px solid #2a2a2a;
-        }
-        
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 0;
-            text-align: center;
-            background-color: var(--secondary-color);
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, var(--primary-color), #ff9966);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #b3b3b3;
-        }
-        
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        .features {
-            padding: 60px 0;
-            background-color: #101010;
-        }
-        
-        .section-title {
-            font-size: 2.2rem;
-            text-align: center;
-            margin-bottom: 50px;
-            position: relative;
-            color: #fff;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 2px;
-        }
-        
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .feature-item {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #2a2a2a;
-        }
-        
-        .feature-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--primary-color);
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .downloads {
-            padding: 60px 0;
-        }
-        
-        .platforms {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .platform {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #2a2a2a;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-        
-        .platform:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: var(--primary-color);
-        }
-        
-        .platform-content {
-            margin-bottom: 20px;
-        }
-        
-        .platform-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-        
-        .platform-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .platform-description {
-            color: #b3b3b3;
-            margin-bottom: 20px;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-        
-        .download-btn:hover {
-            background-color: var(--hover-color);
-        }
-        
-        .unavailable-btn {
-            background-color: #3a3a3a;
-            cursor: not-allowed;
-        }
-        
-        .unavailable-btn:hover {
-            background-color: #3a3a3a;
-        }
-        
-        .not-available {
-            opacity: 0.7;
-        }
-        
-        footer {
-            background-color: #0c0c0c;
-            padding: 30px 0;
-            text-align: center;
-            border-top: 1px solid #2a2a2a;
-        }
-        
-        .copyright {
-            color: #707070;
-            font-size: 0.9rem;
-        }
-        
-        .github-link {
-            color: #707070;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .github-link:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .feature-list, .platforms {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .logo {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .tagline {
-                font-size: 1rem;
-            }
-            
-            .download-btn {
-                padding: 10px 20px;
-                font-size: 0.8rem;
-            }
-        }
-        
-        /* Wave animation */
-        .wave-container {
-            position: relative;
-            overflow: hidden;
-            height: 100px;
-            margin-top: -50px;
-        }
-        
-        .wave {
-            position: absolute;
-            width: 100%;
-            height: 100px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23101010' fill-opacity='1' d='M0,128L48,144C96,160,192,192,288,197.3C384,203,480,181,576,165.3C672,149,768,139,864,154.7C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-        
-        /* Audio equalizer animation */
-        .equalizer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            height: 40px;
-            margin: 30px 0;
-        }
-        
-        .bar {
-            width: 4px;
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 2px;
-            animation: equalize 1.5s ease-in-out infinite;
-        }
-        
-        .bar:nth-child(1) { animation-delay: 0.1s; }
-        .bar:nth-child(2) { animation-delay: 0.3s; }
-        .bar:nth-child(3) { animation-delay: 0.5s; }
-        .bar:nth-child(4) { animation-delay: 0.7s; }
-        .bar:nth-child(5) { animation-delay: 0.9s; }
-        
-        @keyframes equalize {
-            0%, 100% { height: 20%; }
-            50% { height: 100%; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shashwat — Hobby Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: rgba(255,255,255,0.06);
+    --accent: #7c6aff;
+    --accent2: #ff6a9b;
+    --accent3: #6af0ff;
+    --text: #e8e8f0;
+    --muted: #6b6b80;
+    --glow: rgba(124,106,255,0.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  #cursor {
+    position: fixed; top:0; left:0; z-index:9999;
+    pointer-events: none;
+  }
+  #cursor-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s;
+  }
+  #cursor-ring {
+    width: 32px; height: 32px;
+    border: 1.5px solid rgba(124,106,255,0.5);
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+  }
+  body.hovering #cursor-ring {
+    width: 48px; height: 48px;
+    background: rgba(124,106,255,0.08);
+    border-color: var(--accent);
+  }
+
+  /* Noise overlay */
+  body::before {
+    content:'';
+    position: fixed; inset:0; z-index:1;
+    pointer-events:none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px;
+  }
+
+  /* Ambient blobs */
+  .blob {
+    position: fixed; border-radius: 50%;
+    filter: blur(80px); opacity: 0.08;
+    pointer-events: none; z-index:0;
+    animation: drift 20s ease-in-out infinite alternate;
+  }
+  .blob1 { width:600px;height:600px;background:var(--accent);top:-200px;left:-200px; animation-delay:0s; }
+  .blob2 { width:400px;height:400px;background:var(--accent2);bottom:-100px;right:-100px; animation-delay:-7s; }
+  .blob3 { width:300px;height:300px;background:var(--accent3);top:50%;left:60%; animation-delay:-14s; }
+
+  @keyframes drift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(40px, 30px) scale(1.05); }
+  }
+
+  /* Layout */
+  main { position: relative; z-index:2; }
+
+  /* ── HERO ────────────────────────────────── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    padding: 0 8vw;
+    position: relative;
+  }
+
+  .hero-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-name span {
+    display: block;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 50%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: var(--muted);
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-bio {
+    max-width: 480px;
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; margin-top: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .btn {
+    padding: 0.75rem 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.25s;
+    cursor: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(124,106,255,0.3);
+  }
+  .btn-primary:hover { background: #9580ff; box-shadow: 0 0 50px rgba(124,106,255,0.5); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+
+  .hero-avatar {
+    position: absolute; right: 8vw; top: 50%; transform: translateY(-50%);
+    width: clamp(180px, 20vw, 280px);
+    height: clamp(180px, 20vw, 280px);
+    opacity: 0;
+    animation: fadeIn 1s 1.2s forwards;
+  }
+  .hero-avatar img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 60px rgba(124,106,255,0.2), 0 0 120px rgba(124,106,255,0.1);
+    object-fit: cover;
+  }
+  .avatar-ring {
+    position: absolute; inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed rgba(124,106,255,0.3);
+    animation: spin 20s linear infinite;
+  }
+  .avatar-ring2 {
+    position: absolute; inset: -24px;
+    border-radius: 50%;
+    border: 1px dashed rgba(255,106,155,0.2);
+    animation: spin 30s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0; animation: fadeIn 1s 2s forwards;
+    color: var(--muted); font-size: 0.65rem; letter-spacing: 0.2em;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--accent));
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.1)} }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity:0; } to { opacity:1; }
+  }
+
+  /* ── SECTION SHARED ──────────────────────── */
+  section { padding: 8rem 8vw; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 4rem;
+  }
+
+  /* ── STATS ───────────────────────────────── */
+  #stats {
+    padding: 3rem 8vw;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2rem;
+  }
+  .stat {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s;
+  }
+  .stat.visible { opacity:1; transform: translateY(0); }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 0.25rem; }
+
+  /* ── LANGUAGES ───────────────────────────── */
+  #languages {
+    background: var(--surface);
+    border-radius: 1.5rem;
+    margin: 0 4vw;
+    padding: 4rem 6vw;
+    border: 1px solid var(--border);
+  }
+
+  .lang-grid {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+  }
+  .lang-chip {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    background: var(--card);
+    transition: all 0.25s;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  .lang-chip.visible { opacity:1; transform: scale(1); }
+  .lang-chip:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--glow);
+    transform: scale(1.05);
+  }
+  .lang-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .lang-bar-wrap {
+    margin-top: 2rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .lang-bar-row { display: flex; align-items: center; gap: 1rem; }
+  .lang-bar-label { font-size: 0.7rem; min-width: 100px; color: var(--muted); }
+  .lang-bar-track { flex:1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .lang-bar-fill {
+    height: 100%; border-radius: 2px; width:0;
+    transition: width 1.2s cubic-bezier(0.22,1,0.36,1);
+  }
+  .lang-pct { font-size: 0.65rem; color: var(--muted); min-width: 36px; text-align: right; }
+
+  /* ── PROJECTS ────────────────────────────── */
+  #projects { position: relative; }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    cursor: none;
+  }
+  .project-card.visible { opacity:1; transform:translateY(0); }
+  .project-card::before {
+    content:'';
+    position: absolute; inset:0;
+    background: linear-gradient(135deg, rgba(124,106,255,0.04), transparent);
+    opacity:0; transition: opacity 0.3s;
+  }
+  .project-card:hover {
+    border-color: rgba(124,106,255,0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px var(--glow);
+  }
+  .project-card:hover::before { opacity:1; }
+
+  .project-pin {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+  .project-desc {
+    font-size: 0.75rem; line-height: 1.8;
+    color: var(--muted); margin-bottom: 1.25rem;
+  }
+  .project-meta {
+    display: flex; align-items: center; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .project-lang {
+    display: flex; align-items: center; gap: 0.35rem;
+    font-size: 0.65rem; color: var(--muted);
+  }
+  .project-stars {
+    display: flex; align-items: center; gap: 0.35rem;
+    font-size: 0.65rem; color: var(--muted);
+  }
+  .project-link {
+    margin-left: auto;
+    font-size: 0.65rem; color: var(--accent);
+    text-decoration: none; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    cursor: none;
+  }
+  .project-link:hover { color: #fff; }
+
+  /* loading skeleton */
+  .skeleton {
+    background: linear-gradient(90deg, var(--card) 25%, var(--surface) 50%, var(--card) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+
+  /* ── ABOUT ───────────────────────────────── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-text p {
+    font-size: 0.82rem;
+    line-height: 2;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .about-info {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .info-row {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    transition: all 0.25s;
+  }
+  .info-row:hover {
+    border-color: rgba(124,106,255,0.3);
+    transform: translateX(4px);
+  }
+  .info-icon { font-size: 1.1rem; flex-shrink:0; margin-top:0.1rem; }
+  .info-key { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+  .info-val { font-size: 0.82rem; color: var(--text); margin-top: 0.2rem; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 8vw;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.7rem; color: var(--muted);
+    position: relative; z-index: 2;
+  }
+  footer a { color: var(--accent); text-decoration: none; cursor: none; }
+  footer a:hover { color: #fff; }
+
+  /* ── NAV ─────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 8vw;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--border); }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    cursor: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none; transition: color 0.2s;
+    cursor: none;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── RESPONSIVE ──────────────────────────── */
+  @media (max-width: 768px) {
+    .hero-avatar { display: none; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 6vw; }
+  }
+
+  /* Loading state */
+  #loading-screen {
+    position: fixed; inset:0; z-index:1000;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; gap: 1.5rem;
+    transition: opacity 0.5s, visibility 0.5s;
+  }
+  #loading-screen.done { opacity:0; visibility:hidden; }
+  .loader-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes pulse { from {opacity:0.5} to {opacity:1} }
+  .loader-bar-wrap { width: 200px; height: 2px; background: var(--border); border-radius: 1px; overflow:hidden; }
+  .loader-bar { height:100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius:1px; width:0; transition: width 0.1s; }
+  .loader-text { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); }
+</style>
 </head>
 <body>
-    <header>
-            </div>
-        </div>
-    </header>
-    
-    <section class="hero">
-        <div class="container">
-            <h1>Download Ytify</h1>
-            <p class="tagline">The <span class="highlight">fastest</span> (56KB) and <span class="highlight">lightest</span> (7.5K LOC) centralized audio streaming application. Listen to <span class="highlight">Podcasts</span>, <span class="highlight">Audiobooks</span>, <span class="highlight">Music</span>, <span class="highlight">Livestreams</span> and other Audio focused YouTube Videos, even under the lowest network conditions.</p>
-            
-            <div class="equalizer">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-        </div>
-    </section>
-    
-    <div class="wave-container">
-        <div class="wave"></div>
+
+<!-- Custom cursor -->
+<div id="cursor">
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+</div>
+
+<!-- Ambient blobs -->
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<!-- Loading screen -->
+<div id="loading-screen">
+  <div class="loader-logo">S.</div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loader-bar"></div></div>
+  <div class="loader-text" id="loader-text">Fetching from GitHub…</div>
+</div>
+
+<!-- Navigation -->
+<nav id="nav">
+  <div class="nav-logo">Shashwat</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#languages">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://github.com/Shashwat-CODING" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-tag">// hobby developer · open source</div>
+    <h1 class="hero-name"><span>Shashwat</span></h1>
+    <p class="hero-sub" id="hero-sub">Building things for fun.</p>
+    <p class="hero-bio" id="hero-bio">Loading profile…</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://github.com/Shashwat-CODING" target="_blank" class="btn btn-outline">GitHub Profile ↗</a>
     </div>
-    
-    <section class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Ytify?</h2>
-            
-            <div class="feature-list">
-                <div class="feature-item">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Ultra Fast</h3>
-                    <p>Only 56KB to load, ensuring lightning-fast performance even on slow connections. Ytify is designed to work seamlessly everywhere.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">🪶</div>
-                    <h3 class="feature-title">Super Light</h3>
-                    <p>Just 7.5K lines of code with a hybrid HTML + SolidJS approach for maximum efficiency and minimal resource usage.</p>
-                </div>
-                
-                <div class="feature-item">
-                    <div class="feature-icon">🎧</div>
-                    <h3 class="feature-title">All Audio Content</h3>
-                    <p>Access Podcasts, Audiobooks, Music, Livestreams, and other audio-focused YouTube videos in one elegant interface.</p>
-                </div>
-            </div>
+    <div class="hero-avatar" id="hero-avatar">
+      <div class="avatar-ring2"></div>
+      <div class="avatar-ring"></div>
+      <img id="avatar-img" src="" alt="Shashwat">
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div id="stats">
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat"><div class="stat-num" id="stat-repos">—</div><div class="stat-label">Repositories</div></div>
+      <div class="stat"><div class="stat-num" id="stat-stars">—</div><div class="stat-label">Total Stars</div></div>
+      <div class="stat"><div class="stat-num" id="stat-followers">—</div><div class="stat-label">Followers</div></div>
+      <div class="stat"><div class="stat-num" id="stat-langs">—</div><div class="stat-label">Languages Used</div></div>
+    </div>
+  </div>
+
+  <!-- PINNED PROJECTS -->
+  <section id="projects">
+    <div class="section-label">// featured work</div>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid" id="projects-grid">
+      <!-- filled by JS -->
+      <div class="project-card visible" style="min-height:180px">
+        <div class="skeleton" style="height:12px;width:60px;margin-bottom:1rem"></div>
+        <div class="skeleton" style="height:20px;width:70%;margin-bottom:0.75rem"></div>
+        <div class="skeleton" style="height:12px;width:100%;margin-bottom:0.4rem"></div>
+        <div class="skeleton" style="height:12px;width:80%"></div>
+      </div>
+      <div class="project-card visible" style="min-height:180px">
+        <div class="skeleton" style="height:12px;width:60px;margin-bottom:1rem"></div>
+        <div class="skeleton" style="height:20px;width:70%;margin-bottom:0.75rem"></div>
+        <div class="skeleton" style="height:12px;width:100%;margin-bottom:0.4rem"></div>
+        <div class="skeleton" style="height:12px;width:80%"></div>
+      </div>
+      <div class="project-card visible" style="min-height:180px">
+        <div class="skeleton" style="height:12px;width:60px;margin-bottom:1rem"></div>
+        <div class="skeleton" style="height:20px;width:70%;margin-bottom:0.75rem"></div>
+        <div class="skeleton" style="height:12px;width:100%;margin-bottom:0.4rem"></div>
+        <div class="skeleton" style="height:12px;width:80%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <div id="languages" style="margin-bottom:0">
+    <div class="section-label">// tech stack</div>
+    <h2 class="section-title" style="margin-bottom:2rem">Languages & Tools</h2>
+    <div class="lang-grid" id="lang-chips"></div>
+    <div class="lang-bar-wrap" id="lang-bars"></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text">
+      <div class="section-label">// about me</div>
+      <h2 class="section-title">Who am I?</h2>
+      <p>I'm <strong style="color:var(--text)">Shashwat</strong> — a hobby developer who loves building software for the joy of it. My projects span backend services, mobile apps, media streaming, and developer tools.</p>
+      <p>I enjoy exploring low-level networking, building music & media APIs, and shipping full-stack apps. When I'm not coding, I'm probably listening to music or breaking my own projects.</p>
+      <p>Everything I build is driven by curiosity, not deadlines. Open source is my playground.</p>
+    </div>
+    <div class="about-info" id="about-info">
+      <div class="info-row">
+        <div class="info-icon">👤</div>
+        <div>
+          <div class="info-key">Handle</div>
+          <div class="info-val">@Shashwat-CODING</div>
         </div>
-    </section>
-    
-    <section class="downloads">
-        <div class="container">
-            <h2 class="section-title">Available Platforms</h2>
-            
-            <div class="platforms">
-                <div class="platform">
-                    <div class="platform-content">
-                        <div class="platform-icon">🪟</div>
-                        <h3 class="platform-title">Windows</h3>
-                        <p class="platform-description">For Windows 10 and above</p>
-                    </div>
-                    <a href="https://github.com/Shashwat-CODING/redirect/raw/refs/heads/main/installers/Ytify%20Setup%201.0.0.exe?download=" class="download-btn">Download</a>
-                </div>
-                
-                <div class="platform">
-                    <div class="platform-content">
-                        <div class="platform-icon">🍎</div>
-                        <h3 class="platform-title">macOS (Intel)</h3>
-                        <p class="platform-description">For Intel-based Mac computers</p>
-                    </div>
-                    <a href="https://github.com/Shashwat-CODING/redirect/raw/refs/heads/main/installers/Ytify-1.0.0.dmg?download=" class="download-btn">Download</a>
-                </div>
-                
-                <div class="platform">
-                    <div class="platform-content">
-                        <div class="platform-icon">🍎</div>
-                        <h3 class="platform-title">macOS (Apple Silicon)</h3>
-                        <p class="platform-description">For Apple Silicon (M1/M2/M3) Mac computers</p>
-                    </div>
-                    <a href="https://github.com/Shashwat-CODING/redirect/raw/refs/heads/main/installers/Ytify-1.0.0-arm64.dmg?download=" class="download-btn">Download</a>
-                </div>
-                
-                <div class="platform">
-                    <div class="platform-content">
-                        <div class="platform-icon">🐧</div>
-                        <h3 class="platform-title">Linux</h3>
-                        <p class="platform-description">Debian/Ubuntu based distributions (.deb)</p>
-                    </div>
-                    <a href="https://github.com/Shashwat-CODING/redirect/raw/refs/heads/main/installers/ytify-electron_1.0.0_amd64.deb?download=" class="download-btn">Download</a>
-                </div>
-                
-                <div class="platform">
-                    <div class="platform-content">
-                        <div class="platform-icon">📱</div>
-                        <h3 class="platform-title">Android</h3>
-                        <p class="platform-description">For Android 7.0 and above</p>
-                    </div>
-                    <a href="https://archive.org/download/Ytify/Ytify.apk" class="download-btn">Download</a>
-                </div>
-                
-                <div class="platform not-available">
-                    <div class="platform-content">
-                        <div class="platform-icon">📱</div>
-                        <h3 class="platform-title">iOS</h3>
-                        <p class="platform-description">Not currently available for iOS devices</p>
-                    </div>
-                    <span class="download-btn unavailable-btn">Unavailable</span>
-                </div>
-            </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-key">Location</div>
+          <div class="info-val" id="info-location">—</div>
         </div>
-    </section>
-    
-    <section class="web-version">
-        <div class="container" style="text-align: center; padding: 40px 0;">
-            <h2 class="section-title">Try Web Version</h2>
-            <p style="max-width: 600px; margin: 0 auto 30px; color: #b3b3b3;">Experience Ytify directly in your browser without installation</p>
-            <a href="https://ytify.netlify.app/" class="download-btn" style="background: linear-gradient(90deg, var(--primary-color), #ff9966);">Launch Web App</a>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🗓</div>
+        <div>
+          <div class="info-key">GitHub Since</div>
+          <div class="info-val" id="info-since">—</div>
         </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p class="copyright">© 2025 Ytify. All rights reserved.</p>
-            <p style="margin-top: 10px;">
-                <a href="https://github.com/Shashwat-CODING/redirect" class="github-link">View on GitHub</a>
-            </p>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">💼</div>
+        <div>
+          <div class="info-key">Status</div>
+          <div class="info-val">Hobby Developer · Open Source</div>
         </div>
-    </footer>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🔗</div>
+        <div>
+          <div class="info-key">Blog / Site</div>
+          <div class="info-val" id="info-blog">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>Built with ❤️ · <a href="https://github.com/Shashwat-CODING" target="_blank">@Shashwat-CODING</a></span>
+  <span>Portfolio · 2025</span>
+</footer>
+
+<script>
+// ── Cursor ────────────────────────────────────────────────────────────────────
+const dot = document.getElementById('cursor-dot');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a,button,.project-card').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+});
+
+// ── Nav scroll ────────────────────────────────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+});
+
+// ── Intersection observer for animations ─────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+
+// ── Language colors ───────────────────────────────────────────────────────────
+const LANG_COLORS = {
+  JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5', Go:'#00ADD8',
+  Dart:'#00B4AB', Kotlin:'#A97BFF', Java:'#b07219', Rust:'#dea584',
+  HTML:'#e34c26', CSS:'#563d7c', Shell:'#89e051', 'C#':'#239120',
+  Swift:'#F05138', Ruby:'#701516', PHP:'#4F5D95', 'C++':'#f34b7d',
+  C:'#555555', Vue:'#41b883', Svelte:'#ff3e00', Haskell:'#5e5086',
+  Lua:'#000080', Dockerfile:'#384d54', Makefile:'#427819', Nix:'#7e7eff',
+  SCSS:'#c6538c', JSON:'#aaa', Markdown:'#083fa1',
+};
+function langColor(name) { return LANG_COLORS[name] || '#888'; }
+
+// ── Progress bar loader ───────────────────────────────────────────────────────
+const loaderBar = document.getElementById('loader-bar');
+const loaderText = document.getElementById('loader-text');
+let prog = 0;
+function setProgress(p, txt) {
+  prog = p;
+  loaderBar.style.width = p + '%';
+  if (txt) loaderText.textContent = txt;
+}
+
+// ── GitHub API fetch ──────────────────────────────────────────────────────────
+const USERNAME = 'Shashwat-CODING';
+const API = 'https://api.github.com';
+
+async function fetchAll() {
+  try {
+    setProgress(10, 'Fetching profile…');
+    const [profile, repos] = await Promise.all([
+      fetch(`${API}/users/${USERNAME}`).then(r => r.json()),
+      fetch(`${API}/users/${USERNAME}/repos?per_page=100&sort=updated`).then(r => r.json()),
+    ]);
+    setProgress(50, 'Calculating stats…');
+    renderProfile(profile);
+    setProgress(70, 'Loading projects…');
+    await renderRepos(repos, profile);
+    setProgress(90, 'Rendering languages…');
+    renderLanguages(repos);
+    setProgress(100, 'Done!');
+    setTimeout(() => {
+      document.getElementById('loading-screen').classList.add('done');
+      startObservers();
+    }, 400);
+  } catch(err) {
+    setProgress(100, 'Partial load — some data unavailable');
+    setTimeout(() => {
+      document.getElementById('loading-screen').classList.add('done');
+      startObservers();
+    }, 800);
+    console.error(err);
+  }
+}
+
+// ── Render profile ────────────────────────────────────────────────────────────
+function renderProfile(p) {
+  if (p.avatar_url) document.getElementById('avatar-img').src = p.avatar_url;
+  if (p.bio) {
+    document.getElementById('hero-bio').textContent = p.bio;
+    document.getElementById('hero-sub').textContent = p.bio.split('.')[0] + '.';
+  }
+  document.getElementById('stat-repos').textContent = p.public_repos || 0;
+  document.getElementById('stat-followers').textContent = p.followers || 0;
+  document.getElementById('info-location').textContent = p.location || 'Earth 🌍';
+  const since = p.created_at ? new Date(p.created_at).toLocaleDateString('en-GB', {month:'long', year:'numeric'}) : '—';
+  document.getElementById('info-since').textContent = since;
+  const blog = p.blog;
+  const blogEl = document.getElementById('info-blog');
+  if (blog && blog.trim()) {
+    blogEl.innerHTML = `<a href="${blog.startsWith('http')?blog:'https://'+blog}" target="_blank" style="color:var(--accent);text-decoration:none">${blog}</a>`;
+  } else {
+    blogEl.textContent = 'github.com/' + USERNAME;
+  }
+}
+
+// ── Render repos ──────────────────────────────────────────────────────────────
+async function renderRepos(repos, profile) {
+  if (!Array.isArray(repos)) return;
+
+  // Sort by stars desc, take top 6
+  const sorted = [...repos].sort((a,b) => (b.stargazers_count||0) - (a.stargazers_count||0));
+  const top = sorted.slice(0, 6);
+
+  // Total stars
+  const totalStars = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+  document.getElementById('stat-stars').textContent = totalStars;
+
+  const grid = document.getElementById('projects-grid');
+  grid.innerHTML = '';
+
+  top.forEach((repo, i) => {
+    const isPinned = i < 3;
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.style.transitionDelay = (i * 80) + 'ms';
+
+    const desc = repo.description || 'No description provided.';
+    const lang = repo.language || 'Unknown';
+    const stars = repo.stargazers_count || 0;
+    const forks = repo.forks_count || 0;
+    const color = langColor(lang);
+
+    card.innerHTML = `
+      ${isPinned ? `<div class="project-pin">⭐ Pinned</div>` : `<div class="project-pin" style="color:var(--muted)">Repository</div>`}
+      <div class="project-name">${repo.name}</div>
+      <div class="project-desc">${desc}</div>
+      <div class="project-meta">
+        <div class="project-lang">
+          <span class="lang-dot" style="background:${color}"></span>
+          ${lang}
+        </div>
+        <div class="project-stars">⭐ ${stars}</div>
+        ${forks ? `<div class="project-stars">🍴 ${forks}</div>` : ''}
+        <a href="${repo.html_url}" target="_blank" class="project-link">View →</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ── Render languages ──────────────────────────────────────────────────────────
+function renderLanguages(repos) {
+  if (!Array.isArray(repos)) return;
+  const counts = {};
+  repos.forEach(r => {
+    if (r.language) counts[r.language] = (counts[r.language]||0) + 1;
+  });
+  const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  const total = sorted.reduce((s,[,v])=>s+v,0);
+
+  document.getElementById('stat-langs').textContent = sorted.length;
+
+  // Chips
+  const chipsEl = document.getElementById('lang-chips');
+  sorted.forEach(([lang], i) => {
+    const chip = document.createElement('div');
+    chip.className = 'lang-chip';
+    chip.style.transitionDelay = (i * 60) + 'ms';
+    chip.innerHTML = `<span class="lang-dot" style="background:${langColor(lang)}"></span>${lang}`;
+    chipsEl.appendChild(chip);
+  });
+
+  // Bars (top 8)
+  const barsEl = document.getElementById('lang-bars');
+  sorted.slice(0, 8).forEach(([lang, count], i) => {
+    const pct = Math.round((count/total)*100);
+    const row = document.createElement('div');
+    row.className = 'lang-bar-row';
+    row.innerHTML = `
+      <div class="lang-bar-label">${lang}</div>
+      <div class="lang-bar-track">
+        <div class="lang-bar-fill" data-pct="${pct}" style="background:${langColor(lang)}"></div>
+      </div>
+      <div class="lang-pct">${pct}%</div>
+    `;
+    barsEl.appendChild(row);
+  });
+}
+
+// ── Start observers ───────────────────────────────────────────────────────────
+function startObservers() {
+  // Stats
+  document.querySelectorAll('.stat').forEach(el => io.observe(el));
+
+  // Lang chips & bars
+  const chipIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // animate bars
+        e.target.closest('#languages')?.querySelectorAll('.lang-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.lang-chip').forEach(el => chipIO.observe(el));
+  
+  const barIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        document.querySelectorAll('.lang-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.pct + '%';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.lang-bar-row').forEach(el => barIO.observe(el));
+
+  // Projects
+  const projIO = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.project-card').forEach(el => projIO.observe(el));
+}
+
+// ── Kick off ──────────────────────────────────────────────────────────────────
+fetchAll();
+</script>
 </body>
 </html>
