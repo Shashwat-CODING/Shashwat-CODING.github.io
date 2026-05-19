@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Shashwat — Portfolio</title>
+<title>Shashwat — Developer Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Clash+Display:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -89,10 +89,10 @@ h1.hero-name .serif{font-family:var(--font-serif);font-style:italic;font-weight:
 .btn-outline{background:transparent;color:var(--text);border-color:var(--border2);}
 .btn-outline:hover{border-color:var(--bright);color:var(--bright);background:var(--accent-dim);}
 .hero-visual{display:flex;flex-direction:column;align-items:center;gap:32px;opacity:0;animation:fadeIn .9s .5s forwards;}
-.av-wrap{position:relative;width:200px;height:200px;}
+.av-wrap{position:relative;width:200px;height:200px;border-radius:50%;}
 .av-frame{position:absolute;inset:-2px;border-radius:50%;background:linear-gradient(135deg,var(--bright) 0%,transparent 60%,var(--bright) 100%);animation:spin 10s linear infinite;}
 .av-inner{position:absolute;inset:2px;border-radius:50%;background:var(--bg);}
-.av-img{position:absolute;inset:4px;border-radius:50%;object-fit:cover;display:block;background:var(--card);}
+.av-img{position:absolute;inset:4px;border-radius:50%;object-fit:cover;object-position:center top;display:block;background:var(--card);width:calc(100% - 8px);height:calc(100% - 8px);overflow:hidden;}
 .hero-stat-row{display:flex;gap:32px;}
 .stat{text-align:center;}
 .stat-n{font-size:28px;font-weight:700;color:var(--bright);letter-spacing:-1px;line-height:1;}
@@ -262,7 +262,7 @@ footer{padding:44px 48px;border-top:1px solid var(--border);display:flex;justify
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Shashwat</div>
+  <div class="nav-logo">Shashwat<em>.dev</em></div>
   <ul class="nav-links">
     <li><a href="#releases">Releases</a></li>
     <li><a href="#projects">Projects</a></li>
